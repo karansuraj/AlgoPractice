@@ -6,6 +6,6 @@ public class Main {
     }
     private static void testLongPalindromeSubstring(){
         Solution soln = new Solution();
-        System.out.println(soln.longestPalindrome("abcabacbd"));
+        System.out.println(soln.longestPalindrome("cbbd"));
     }
 }

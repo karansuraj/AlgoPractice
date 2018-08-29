@@ -8,18 +8,21 @@ public class Solution {
                 }
         */
         int endInd;
+        String out = ""; //Will be the longest palindrome substring found
         int[][] T = new int[s.length()][s.length()];
         for(int m=0; m<s.length(); m++) { //Creating all base cases
             T[m][0] = 0; //You cannot have a substring where the first ind is greater than second
             T[m][m] = 1; //Every single character by itself is a palindrome
             if(m<s.length()-1){ //Doing the first pass checking every substring of 2 chars to see if palindrome
-                if(s.charAt(m) == s.charAt(m+1)) T[m][m+1] = 2;
+                if(s.charAt(m) == s.charAt(m+1)) {
+                    T[m][m+1] = 2;
+                    out = s.substring(m,m+2); //Encountered a real palindrome, so populate the output with it
+                }
                 else T[m][m+1] = 0;
             }
         }
-        String out = "";
         int maxSub = 1;
-        for(int subSize=2; subSize<s.length()-1; subSize++){ // k will define the size of substring
+        for(int subSize=2; subSize<s.length()-1; subSize++){ // subSize will define the size of substring-1
             for(int startInd=0; startInd+subSize<s.length(); startInd++) {
                 endInd = startInd + subSize; //start at the 2nd index
                 //Check if inner substring is a palindrome, and whether the overall substring is a palindrome

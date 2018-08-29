@@ -9,7 +9,7 @@ class Solution {
         */
         if(s.length()==1) return s;
         int endInd;
-        String out = ""; //Will be the longest palindrome substring found
+        String out = s.substring(0,1); //Will be the longest palindrome substring found, currently the 1st char
         int[][] T = new int[s.length()][s.length()];
         for(int m=0; m<s.length(); m++) { //Creating all base cases
             T[m][0] = 0; //You cannot have a substring where the first ind is greater than second

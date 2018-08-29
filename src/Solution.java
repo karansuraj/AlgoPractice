@@ -7,6 +7,7 @@ class Solution {
                     else T(i,j) = 0
                 }
         */
+        if(s.length()==1) return s;
         int endInd;
         String out = ""; //Will be the longest palindrome substring found
         int[][] T = new int[s.length()][s.length()];

@@ -1,4 +1,4 @@
-public class Solution {
+class Solution {
     public String longestPalindrome(String s) {
         /* Seems like a dynamic programming problem we can use a 2D array to keep track of records
         T(i,j) = {

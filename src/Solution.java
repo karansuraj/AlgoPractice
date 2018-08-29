@@ -7,7 +7,7 @@ class Solution {
                     else T(i,j) = 0
                 }
         */
-        if(s.length()==1) return s;
+        if(s.length()==0) return s; //Empty string should return empty string
         int endInd;
         String out = s.substring(0,1); //Will be the longest palindrome substring found, currently the 1st char
         int[][] T = new int[s.length()][s.length()];
@@ -23,7 +23,7 @@ class Solution {
             }
         }
         int maxSub = 1;
-        for(int subSize=2; subSize<s.length()-1; subSize++){ // subSize will define the size of substring-1
+        for(int subSize=2; subSize<s.length(); subSize++){ // subSize will define the size of substring-1
             for(int startInd=0; startInd+subSize<s.length(); startInd++) {
                 endInd = startInd + subSize; //start at the 2nd index
                 //Check if inner substring is a palindrome, and whether the overall substring is a palindrome

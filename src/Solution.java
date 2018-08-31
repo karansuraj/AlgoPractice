@@ -1,4 +1,42 @@
 class Solution {
+    public int romanToInt(String s) {
+        int out = 0;
+        int currRom, nextRom;
+        for(int i=0; i<s.length(); i++){ //Loop through chars of string adding to output
+            currRom = Rom(s.charAt(i)); //Current roman numeral
+            if(i+1<s.length()){ //since we are looking ahead one character, need to make sure that we don't null point
+                nextRom = Rom(s.charAt(i+1)); //Next roman numeral
+                if(currRom < nextRom) {
+                    out += (nextRom-currRom); // for a case like IX, where that's 10-1
+                    i++; //Skipping ahead 2 indices (next loop will iterate 1), since we've accounted for these 2
+                }
+                else if(currRom >= nextRom) out+= currRom; //if greater than next character, we add this roman numeral and move on
+            } else out+= currRom;
+        }
+        return out;
+    }
+    int Rom(char a){ //Create individual roman numeral to integer converter
+        int out;
+        switch(a){
+            case 'M': out = 1000;
+                break;
+            case 'D': out = 500;
+                break;
+            case 'C': out = 100;
+                break;
+            case 'L': out = 50;
+                break;
+            case 'X': out = 10;
+                break;
+            case 'V': out = 5;
+                break;
+            case 'I': out = 1;
+                break;
+            default: out = 0;
+                break;
+        }
+        return out;
+    }
     int reverse(int x) {
         /* Count the number of digits and the number of 10s places in the final output */
         if(x/10==0) return x;

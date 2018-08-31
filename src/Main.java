@@ -3,7 +3,8 @@ public class Main {
     public static void main(String[] args){
 
         //testLongPalindromeSubstring();
-        testReverseInt();
+        //testReverseInt();
+        System.out.println(Solution.romanToInt("III"));
     }
     private static void testLongPalindromeSubstring(){
         Solution soln = new Solution();

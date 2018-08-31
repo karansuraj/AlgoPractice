@@ -5,7 +5,17 @@ public class Main {
         //testLongPalindromeSubstring();
         //testReverseInt();
         //System.out.println(Solution.romanToInt("III"));
-        System.out.println(Solution.findMedianSortedArrays(new int[]{1,2}, new int[]{3,4}));
+        testFindOfSortedArrays();
+    }
+    private static void testFindOfSortedArrays(){
+        System.out.println(Solution.findMedianSortedArrays(new int[]{1,2}, new int[]{3,4})); //2.5
+        System.out.println(Solution.findMedianSortedArrays(new int[]{1,2}, new int[]{1,2})); //1.5
+        System.out.println(Solution.findMedianSortedArrays(new int[]{1,3}, new int[]{})); //2.0
+        System.out.println(Solution.findMedianSortedArrays(new int[]{1,3}, new int[]{2})); //2.0
+        System.out.println(Solution.findMedianSortedArrays(new int[]{1,2,3}, new int[]{4,5})); //3.0
+        System.out.println(Solution.findMedianSortedArrays(new int[]{3,4}, new int[]{1,2,3})); //3.0
+        System.out.println(Solution.findMedianSortedArrays(new int[]{2,2,2}, new int[]{2,2,2,2})); //2.0
+        System.out.println(Solution.findMedianSortedArrays(new int[]{1}, new int[]{2,3,4})); //2.5
     }
     private static void testLongPalindromeSubstring(){
         Solution soln = new Solution();

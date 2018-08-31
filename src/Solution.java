@@ -1,14 +1,44 @@
 class Solution {
+    static double findMedianSortedArraysOld(int[] nums1, int[] nums2) {
+        if(nums1.length==0) nums1 = nums2;
+        if(nums2.length==0) nums2 = nums1;
+        double newArrLen = (double) (nums1.length + nums2.length);
+        double midpoint = newArrLen/2.0-0.5; //defining the midpoint of both arrays (0.5 less than midpoint for even sized arrays)
+        int i=0, n1Ind=0, n2Ind=0; //Index for each integer array
+        double out, left=0.0, right=0.0; //Declare output var and left and right of median (when avg is necessary)
+        while(i<midpoint){ //While we have not reached the midpoint of both input arrays
+            if(nums1[n1Ind] <= nums2[n2Ind]){ //Inserting element from 1st array if it's less than or equal to 2nd
+                left = (double)nums1[n1Ind];
+                right = (double)nums2[n2Ind];
+                n1Ind++;
+            } else { //Inserting element from 2nd array if it's less than or equal to 1st
+                left = (double)nums2[n2Ind];
+                right = (double)nums1[n1Ind];
+                n2Ind++;
+            }
+            i++;
+        }
+        if(newArrLen % 2 != 0) out = (double) Math.max(left, right); //If there are an odd number of indices
+        else out =  (left+right)/2.0;
+        return out;
+    }
     static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         if(nums1.length==0) nums1 = nums2;
         if(nums2.length==0) nums2 = nums1;
         double newArrLen = (double) (nums1.length + nums2.length);
-        int[] newArr = new int[(int)newArrLen]; //Creating new array of same size as length of 2 smaller arrays
         double midpoint = newArrLen/2.0-0.5; //defining the midpoint of both arrays (0.5 more than midpoint for even sized arrays)
+        int[] newArr = new int[(int)midpoint+2]; //Creating new array of same size as length of 2 smaller arrays
+        double out;
         int i=0, n1Ind=0, n2Ind=0; //Index for each integer array
         while(i<=midpoint+1){ //While we have not reached the midpoint of both input arrays
-            if(n1Ind==nums1.length) newArr[i] = nums2[n2Ind];
-            else if(n2Ind==nums2.length) newArr[i] = nums1[n1Ind];
+            if(n1Ind==nums1.length) { //1st array is already finished, so only add on elems from 2nd array until midpoint
+                newArr[i] = nums2[n2Ind];
+                n2Ind++;
+            }
+            else if(n2Ind==nums2.length) { //2nd array is already finished, so only add on elems from 1st array until midpoint
+                newArr[i] = nums1[n1Ind];
+                n1Ind++;
+            }
             else{
                 if(nums1[n1Ind] <= nums2[n2Ind]){ //Inserting element from 1st array if it's less than or equal to 2nd
                     newArr[i] = nums1[n1Ind];
@@ -20,8 +50,9 @@ class Solution {
             }
             i++;
         }
-        if(newArrLen % 2 != 0) return (double) newArr[(int) midpoint]; //If there are an odd number of indices
-        return ((double) (newArr[(int) midpoint] + newArr[(int) midpoint-1]))/2.0;
+        if(newArrLen % 2 != 0) out = (double) newArr[(int) midpoint]; //If there are an odd number of indices, take midpoint
+        else out =  ((double) (newArr[(int) midpoint] + newArr[(int) (midpoint+0.5)]))/2.0; //If even indices, avg midpoint
+        return out;
     }
     static int romanToInt(String s) {
         int out = 0;

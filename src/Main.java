@@ -4,7 +4,8 @@ public class Main {
 
         //testLongPalindromeSubstring();
         //testReverseInt();
-        System.out.println(Solution.romanToInt("III"));
+        //System.out.println(Solution.romanToInt("III"));
+        System.out.println(Solution.findMedianSortedArrays(new int[]{1,2}, new int[]{3,4}));
     }
     private static void testLongPalindromeSubstring(){
         Solution soln = new Solution();

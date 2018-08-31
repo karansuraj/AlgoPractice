@@ -1,5 +1,29 @@
 class Solution {
-    public int romanToInt(String s) {
+    static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        if(nums1.length==0) nums1 = nums2;
+        if(nums2.length==0) nums2 = nums1;
+        double newArrLen = (double) (nums1.length + nums2.length);
+        int[] newArr = new int[(int)newArrLen]; //Creating new array of same size as length of 2 smaller arrays
+        double midpoint = newArrLen/2.0-0.5; //defining the midpoint of both arrays (0.5 more than midpoint for even sized arrays)
+        int i=0, n1Ind=0, n2Ind=0; //Index for each integer array
+        while(i<=midpoint+1){ //While we have not reached the midpoint of both input arrays
+            if(n1Ind==nums1.length) newArr[i] = nums2[n2Ind];
+            else if(n2Ind==nums2.length) newArr[i] = nums1[n1Ind];
+            else{
+                if(nums1[n1Ind] <= nums2[n2Ind]){ //Inserting element from 1st array if it's less than or equal to 2nd
+                    newArr[i] = nums1[n1Ind];
+                    n1Ind++;
+                } else { //Inserting element from 2nd array if it's less than or equal to 1st
+                    newArr[i] = nums2[n2Ind];
+                    n2Ind++;
+                }
+            }
+            i++;
+        }
+        if(newArrLen % 2 != 0) return (double) newArr[(int) midpoint]; //If there are an odd number of indices
+        return ((double) (newArr[(int) midpoint] + newArr[(int) midpoint-1]))/2.0;
+    }
+    static int romanToInt(String s) {
         int out = 0;
         int currRom, nextRom;
         for(int i=0; i<s.length(); i++){ //Loop through chars of string adding to output
@@ -15,7 +39,7 @@ class Solution {
         }
         return out;
     }
-    int Rom(char a){ //Create individual roman numeral to integer converter
+    static int Rom(char a){ //Create individual roman numeral to integer converter
         int out;
         switch(a){
             case 'M': out = 1000;

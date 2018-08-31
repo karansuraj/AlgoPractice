@@ -1,78 +1,33 @@
 class Solution {
-     static int romanToInt(String s) {
-        int out = 0;
-        int currRom, nextRom;
-        for(int i=0; i<s.length(); i++){ //Loop through chars of string adding to output
-            currRom = Rom(s.charAt(i)); //Current roman numeral
-            if(i+1<s.length()){ //since we are looking ahead one character, need to make sure that we don't null point
-                nextRom = Rom(s.charAt(i+1)); //Next roman numeral
-                if(currRom < nextRom) {
-                    out += (nextRom-currRom); // for a case like IX, where that's 10-1
-                    i++; //Skipping ahead 2 indices (next loop will iterate 1), since we've accounted for these 2
-                }
-                else if(currRom >= nextRom) out+= currRom; //if greater than next character, we add this roman numeral and move on
-            } else out+= currRom;
-        }
-        return out;
-    }
-    static int Rom(char a){ //Create individual roman numeral to integer converter
-        int out;
-        switch(a){
-            case 'M': out = 1000;
-                break;
-            case 'D': out = 500;
-                break;
-            case 'C': out = 100;
-                break;
-            case 'L': out = 50;
-                break;
-            case 'X': out = 10;
-                break;
-            case 'V': out = 5;
-                break;
-            case 'I': out = 1;
-                break;
-            default: out = 0;
-                break;
-        }
-        return out;
-    }
-
-    public int reverse(int x) {
+    int reverse(int x) {
         /* Count the number of digits and the number of 10s places in the final output */
         if(x/10==0) return x;
         int out=0;
-        int tenCt = 0; //Will be the number of digits in output
-        int numDigits = 0; //Will be the number of digits in input
-        //int x_temp = Math.abs(x); //Using absolute value to make operations easier
-        boolean isNeg = (x<0);
-        x = Math.abs(x);
-        int x_temp = x;
+        int numDigitsOut; //Will be the number of digits in output
+        int numDigitsIn = 0; //Will be the number of digits in input
+        long long_x = (long) Math.abs(x); //Using absolute value to make operations easier
+        long x_temp = long_x;
         while(x_temp>0) {
-            if(x_temp>0) tenCt++; //Number of digits in output could be less than input
-            numDigits++;
+            numDigitsIn++;
             x_temp/=10;
         }
-        int inPow,outPow;
-        //System.out.println(tenCt + " " + numDigits);
-        for(int i=0; i<tenCt; i++){ //Counting number of digits to add to out, up
-            inPow = (int) (Math.pow(10,numDigits-1));
-            outPow = (int) Math.pow(10,i);
-            //System.out.println(inPow + " " + outPow);
+        long inPow,outPow;
+        numDigitsOut = numDigitsIn;
+        for(int i=0; i<numDigitsOut; i++){ //Counting number of digits to add to out, up
+            inPow = (long) (Math.pow(10,numDigitsIn-1)); //Power of 10 of top digit
+            outPow = (long) Math.pow(10,i); //Power of 10 of digit we are adding to output
             //numDigits - 1, because 10 is power of 1 of 10, but is 2 digits
-            x_temp = x/inPow; // Divides to leave only top digit
+            x_temp = long_x/inPow; // Divides to leave only top digit
+            if(out + x_temp*outPow > Integer.MAX_VALUE) return 0; // if the result overflows int type, return 0
             out+=x_temp*outPow; //Add top digit to lower digits of output
-            x = x - x_temp*inPow; //Subtract top digit from input
-            numDigits--;
-            /*System.out.println(x + " " + x_temp + " " + out);
-            System.out.println();*/
+            long_x = long_x - x_temp*inPow; //Subtract top digit from input
+            numDigitsIn--;
         }
-        if(isNeg) out*=-1;
+        if(x<0) out*=-1;
         return out;
-        //char[] nChrs = x.toCharArray();
     }
 
-    public String longestPalindrome(String s) {
+    String longestPalindrome(String s) {
         /* Seems like a dynamic programming problem we can use a 2D array to keep track of records
         T(i,j) = {
                     if(T(i+1, j-1) > 0 && s.charAt(i) == s.charAt(j))

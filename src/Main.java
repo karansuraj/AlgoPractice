@@ -13,6 +13,6 @@ public class Main {
 
     private static void testReverseInt(){
         Solution soln = new Solution();
-        System.out.println(soln.reverse(1534236469));
+        System.out.println(soln.reverse(-123));
     }
 }

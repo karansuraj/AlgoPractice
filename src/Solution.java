@@ -1,4 +1,53 @@
 class Solution {
+    static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        //Return individual lists if either one of the inputs is null
+        if(l1==null) return l2;
+        if(l2==null) return l1;
+        //Init new ListNode with minimum
+        ListNode out = null; //Moving pointer
+        if(l1.val<=l2.val) {
+            out = new ListNode(l1.val);
+            l1 = l1.next;
+        } else {
+            out = new ListNode(l2.val);
+            l2 = l2.next;
+        }
+        ListNode finalOut = out; //Final output pointing to head of LL
+        System.out.println(out.val);
+        while(l1!=null || l2!=null){
+            if(l1==null){
+                while(l2!=null){
+                    out.next = l2; //Assigning l2 to next node
+                    out = out.next; //Moving to next node
+                    l2 = l2.next; //Iterating on L2 LL
+                }
+            } else if(l2==null){
+                while(l1!=null){ //Similar to l2 steps above
+                    out.next = l1;
+                    out = out.next;
+                    l1 = l1.next;
+                }
+            } else{
+                if(l1.val <= l2.val){
+                    //if(out==null) out = l1;
+                    out.next = l1;
+                    //out.next = null;
+                    l1 = l1.next;
+                } else {
+                    //if(out==null) out = l2;
+                    out.next = l2;
+                    l2 = l2.next;
+                }
+
+                out = out.next;
+                System.out.println(out.val);
+                //out  = null;
+                //System.out.println(out.val);
+            }
+        }
+        return finalOut;
+    }
+
     static double findMedianSortedArraysOld(int[] nums1, int[] nums2) {
         if(nums1.length==0) nums1 = nums2;
         if(nums2.length==0) nums2 = nums1;

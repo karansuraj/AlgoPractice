@@ -5,8 +5,20 @@ public class Main {
         //testLongPalindromeSubstring();
         //testReverseInt();
         //System.out.println(Solution.romanToInt("III"));
-        testFindOfSortedArrays();
+        //testFindOfSortedArrays();
+        testMergeSortList();
     }
+    private static void testMergeSortList(){
+        ListNode a = new ListNode(1);
+        a.appendToTail(2);
+        a.appendToTail(4);
+        ListNode b = new ListNode(1);
+        b.appendToTail(3);
+        b.appendToTail(4);
+
+        Solution.mergeTwoLists(a,b);
+    }
+
     private static void testFindOfSortedArrays(){
         System.out.println(Solution.findMedianSortedArrays(new int[]{1,2}, new int[]{3,4})); //2.5
         System.out.println(Solution.findMedianSortedArrays(new int[]{1,2}, new int[]{1,2})); //1.5

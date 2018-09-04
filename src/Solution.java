@@ -1,4 +1,20 @@
 class Solution {
+    static int maxSubArray(int[] nums) { //Given an integer array, find contiguous subarray which has the largest sum and return sum
+        /* Dynamic programming soln, greatest sum including current element
+            If T[i-1] >= 0, T[i] = T[i-1] + nums[i]
+            Else T[i] = nums[i]
+        */
+        int[] T = new int[nums.length];
+        T[0] = nums[0]; //Base case
+        int max = T[0];
+        for(int i=1; i<nums.length; i++){
+            if(T[i-1] >=0) T[i] = T[i-1] + nums[i];
+            else T[i] = nums[i];
+            if(T[i]>max) max = T[i];
+        }
+        return max;
+    }
+
     static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         //Return individual lists if either one of the inputs is null
         if(l1==null) return l2;

@@ -8,6 +8,16 @@ public class Main {
         //testFindOfSortedArrays();
         testMergeSortList();
     }
+    private static void testLRU(){
+        LRUCache tst = new LRUCache(10);
+        tst.put(10,13);
+        tst.put(3,17);
+        tst.put(6,11);
+        tst.put(10,15);
+
+        //System.out.println(tst.put(10,13));
+    }
+
     private static void testMergeSortList(){
         ListNode a = new ListNode(1);
         a.appendToTail(2);

@@ -6,7 +6,13 @@ public class Main {
         //testReverseInt();
         //System.out.println(Solution.romanToInt("III"));
         //testFindOfSortedArrays();
-        testMergeSortList();
+        //testMergeSortList();
+        testIntegerToWords();
+    }
+    private static void testIntegerToWords(){ //Test conversion of Integer to Words
+        System.out.println(IntegerToWords.IntegerToWords(1000));
+        System.out.println(IntegerToWords.IntegerToWords(1234567891));
+        System.out.println(IntegerToWords.IntegerToWords(123));
     }
     private static void testLRU(){
         LRUCache tst = new LRUCache(10);

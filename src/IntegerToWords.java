@@ -21,21 +21,16 @@ class IntegerToWords {
             if(oneInd>=0) {
                 ones[oneInd] = numStr.charAt(numInd);
                 oneInd--;
-            } else{
-                if(thsInd>=0){
-                    thousands[thsInd] = numStr.charAt(numInd);
-                    thsInd--;
-                } else{
-                    if(milInd>=0){
-                        millions[milInd] = numStr.charAt(numInd);
-                        milInd--;
-                    } else{
-                        if(bilInd>=0){
-                            billions[bilInd] = numStr.charAt(numInd);
-                            bilInd--;
-                        }
-                    }
-                }
+            } else if(thsInd>=0){
+                thousands[thsInd] = numStr.charAt(numInd);
+                thsInd--;
+
+            } else if(milInd>=0){
+                millions[milInd] = numStr.charAt(numInd);
+                milInd--;
+            } else if(bilInd>=0){
+                billions[bilInd] = numStr.charAt(numInd);
+                bilInd--;
             }
             numInd--;
         }

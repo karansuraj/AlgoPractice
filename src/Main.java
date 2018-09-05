@@ -10,7 +10,7 @@ public class Main {
         testIntegerToWords();
     }
     private static void testIntegerToWords(){ //Test conversion of Integer to Words
-        System.out.println(IntegerToWords.IntegerToWords(1000));
+        System.out.println(IntegerToWords.IntegerToWords(1011));
         System.out.println(IntegerToWords.IntegerToWords(1234567891));
         System.out.println(IntegerToWords.IntegerToWords(123));
     }

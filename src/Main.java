@@ -1,3 +1,5 @@
+import java.util.*;
+
 //import java.util.*;
 public class Main {
     public static void main(String[] args){
@@ -7,8 +9,23 @@ public class Main {
         //System.out.println(Solution.romanToInt("III"));
         //testFindOfSortedArrays();
         //testMergeSortList();
-        testIntegerToWords();
+        //testIntegerToWords();
+        testTreeNode();
     }
+
+    private static void testTreeNode(){
+        Tree bin = new Tree();
+        //int[] arr = new int[]{1,2,3,4,5,6,7,8,9};
+        bin.root = bin.insertLevelOrder(new int[]{}, bin.root, 0);
+
+        Tree bin2 = new Tree();
+        bin2.root = bin2.insertLevelOrder(new int[]{}, bin2.root, 0);
+        //ArrayList<Integer> arr2d2 = new ArrayList<>();
+        //bin.inOrder(bin.root, arr2d2);
+        //for(Integer i: arr2d2) System.out.print(i+" ");
+        System.out.println(bin.compareTrees(bin.root, bin2.root, true));
+    }
+
     private static void testIntegerToWords(){ //Test conversion of Integer to Words
         System.out.println(IntegerToWords.IntegerToWords(1011));
         System.out.println(IntegerToWords.IntegerToWords(1234567891));

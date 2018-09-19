@@ -49,16 +49,16 @@ public class Tree {
         }
     }
 
-    public boolean compareTrees(Node root1, Node root2, boolean isSame){
-        if (root1 != null && root2!= null){
-            if(root1.data==root2.data && isSame) isSame=true;
-            else isSame=false;
+    //Recursive function that will search both trees and compare values along the way to check if trees are the same
+    public boolean compareTrees(Node root1, Node root2, boolean isSame){ //false booleans will propagate up the recursion
+        if (root1 != null && root2!= null){ //As long as both are not null
+            if(root1.data==root2.data && isSame) isSame=true; //Check if values are same at the current node
+            else isSame=false; //If one value is off, this will propagate up the recursion
             isSame = compareTrees(root1.left, root2.left, isSame);
             isSame = compareTrees(root1.right, root2.right, isSame);
 
-        }
+        } else if (root1!= root2) isSame=false; //If root1 and root2 are different in any way, set output false
         return isSame;
-        //else return false;
     }
 
     // Driver program to test above function 

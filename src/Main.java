@@ -14,16 +14,19 @@ public class Main {
     }
 
     private static void testTreeNode(){
-        Tree bin = new Tree();
+        Tree bin1 = new Tree();
         //int[] arr = new int[]{1,2,3,4,5,6,7,8,9};
-        bin.root = bin.insertLevelOrder(new int[]{}, bin.root, 0);
-
+        bin1.root = bin1.insertLevelOrder(new int[]{1,3,4}, bin1.root, 0);
+        //bin1.root = new Tree.Node(1);
+        //bin1.root.left = new Tree.Node(2);
         Tree bin2 = new Tree();
-        bin2.root = bin2.insertLevelOrder(new int[]{}, bin2.root, 0);
+        //bin2.root = new Tree.Node(1);
+        //bin2.root.left = new Tree.Node(2);
+        bin2.root = bin2.insertLevelOrder(new int[]{1,3,4}, bin2.root, 0);
         //ArrayList<Integer> arr2d2 = new ArrayList<>();
         //bin.inOrder(bin.root, arr2d2);
         //for(Integer i: arr2d2) System.out.print(i+" ");
-        System.out.println(bin.compareTrees(bin.root, bin2.root, true));
+        System.out.println(bin1.compareTrees(bin1.root, bin2.root, true));
     }
 
     private static void testIntegerToWords(){ //Test conversion of Integer to Words

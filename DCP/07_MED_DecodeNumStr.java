@@ -80,18 +80,28 @@ class Main {
     System.out.println();
     System.out.println(decodeStr(str4));
     System.out.println();
+    System.out.println(decodeStr("10011"));
+    System.out.println(decodeStr("100"));
+    System.out.println(decodeStr("1011"));
+    System.out.println(decodeStr("10"));
+    System.out.println(decodeStr("101"));
+    System.out.println(decodeStr("01"));
   }
 
   public static int decodeStr(String str) {
+    if(str.length()>0 && str.charAt(0) == '0') return 0;
     int[] T = new int[str.length()+1];
     //Base case, 1 way to decode empty string
     T[0] = 1;
     //Loop through array, doing lookbacks as necessary
     for(int i=1; i<T.length; i++) {
       //Lookback 1
-      T[i] += T[i-1];
+      // System.out.println(str.charAt(i-1));
+      if(str.charAt(i-1) !='0') T[i] += T[i-1];
       //Lookback 2
       if(i>1) {
+        // if(str.charAt(i-1) == '0' &&
+        //   !(str.charAt(i-2) == '2' || str.charAt(i-2) == '1')) return 0;
         //If last 2 chars is a valid mapping, add it
         String sub = str.substring(i-2, i);
         if(validMap(sub)) {
@@ -103,6 +113,8 @@ class Main {
   }
 
   private static boolean validMap(String strval) {
+    // System.out.println(strval);
+    if(strval.length()>0 && strval.charAt(0)=='0') return false;
     int val = Integer.parseInt(strval);
     return val >= 1 && val <= 26;
   }
